@@ -12,13 +12,22 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/qkcAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="20dp"
             android:hint="Enter your QCK wallet address"
+            android:textColor="@color/black" />
+        <EditText
+            android:id="@+id/ethAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Enter your ETH wallet address"
             android:textColor="@color/black" />
 
         <EditText
