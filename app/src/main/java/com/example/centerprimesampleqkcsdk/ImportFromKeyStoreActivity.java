@@ -23,6 +23,14 @@ public class ImportFromKeyStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_import_keystore);
 
+        /**
+         * Using this importFromKeystore function user can import his wallet from its keystore.
+         *
+         * @params keystore, password, Context
+         *
+         * @return walletAddress
+         */
+
         QKCManager qkcManager = QKCManager.getInstance();
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
