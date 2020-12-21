@@ -65,7 +65,6 @@ public class CheckBalanceActivity extends AppCompatActivity {
                     address = "0x" + address;
                 }
 
-
                 String qckWalletAddress = qkcManager.
                         getQCKAddress(address,CheckBalanceActivity.this);
 
@@ -80,8 +79,6 @@ public class CheckBalanceActivity extends AppCompatActivity {
             }
         });
 
-
-
         binding.checkBtn.setOnClickListener(v -> {
             String address = binding.address.getText().toString();
             if (!address.startsWith("0x")) {
@@ -94,7 +91,7 @@ public class CheckBalanceActivity extends AppCompatActivity {
             String chainBasedAddress =qkcManager.getQCKAddressByChainIdAndShardId(qckWalletAddress,chainID,0,this);
 
 
-            qkcManager.getQCKBalance(chainBasedAddress)
+            qkcManager.getQCKBalance(chainBasedAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(accountData -> {
@@ -105,11 +102,11 @@ public class CheckBalanceActivity extends AppCompatActivity {
                             balance = Numeric.toBigInt(accountData.getPrimary().getBalances().get(0)
                                     .getBalance());
                         }
-                        BigDecimal ethBalance = BalanceUtils.weiToEth(balance);
+                        BigDecimal qkcBalance = BalanceUtils.weiToEth(balance);
                         String pattern = "###,###.########";
                         DecimalFormat decimalFormat = new DecimalFormat(pattern);
-                        System.out.println("**** **** " + decimalFormat.format(ethBalance));
-                        binding.balanceTxt.setText("QKC balance: " + decimalFormat.format(ethBalance));
+                        System.out.println("**** **** " + decimalFormat.format(qkcBalance));
+                        binding.balanceTxt.setText("QKC balance: " + decimalFormat.format(qkcBalance));
                         //   binding.balanceTxt.setText("QKC balance: " + accountData.getPrimary().getBalances().get(1));
 
                     }, error -> {

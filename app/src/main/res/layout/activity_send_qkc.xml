@@ -68,7 +68,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/ethAmount"
+                android:id="@+id/qkcAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -103,7 +103,7 @@
             android:textColor="#FF0000" />
 
         <Button
-            android:id="@+id/sendBNB"
+            android:id="@+id/sendQKC"
             android:layout_width="wrap_content"
             android:textColor="@color/white"
             android:layout_height="wrap_content"

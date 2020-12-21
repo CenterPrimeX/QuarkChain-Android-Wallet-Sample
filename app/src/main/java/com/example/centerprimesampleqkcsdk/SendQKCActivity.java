@@ -26,9 +26,9 @@ public class SendQKCActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_send_qkc);
     /**
-     * Using this sendEther function you can send ethereum from walletAddress to another walletAddress.
+     * Using this sendQCKToken function you can send QKC from walletAddress to another walletAddress.
      *
-     * @params senderWalletAddress, password, gasPrice, gasLimit, etherAmount, receiverWalletAddress, Context
+     * @params senderWalletAddress, password, gasPrice, gasLimit, qkcAmount, receiverWalletAddress, Context
      *
      * @return transactionHash
      */
@@ -38,8 +38,10 @@ public class SendQKCActivity extends AppCompatActivity {
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
 
-        binding.sendBNB.setOnClickListener(v -> {
-            if (!TextUtils.isEmpty(binding.qkcAddress.getText().toString().trim()) && !TextUtils.isEmpty(binding.ethAddress.getText().toString().trim()) && !TextUtils.isEmpty(binding.ethAmount.getText().toString().trim())
+        binding.sendQKC.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(binding.qkcAddress.getText().toString().trim())
+                    && !TextUtils.isEmpty(binding.ethAddress.getText().toString().trim())
+                    && !TextUtils.isEmpty(binding.qkcAmount.getText().toString().trim())
                     && !TextUtils.isEmpty(binding.gasLimit.getText().toString().trim())
                     && !TextUtils.isEmpty(binding.receiverAddress.getText().toString().trim())
                     && !TextUtils.isEmpty(binding.password.getText().toString().trim())) {
@@ -50,7 +52,7 @@ public class SendQKCActivity extends AppCompatActivity {
                 //    BigInteger gasPrice = new BigInteger(String.valueOf(ethManager.getGasPrice()));
                 BigInteger gasPrice = new BigInteger("30000000000");
                 BigInteger gasLimit = new BigInteger(binding.gasLimit.getText().toString());
-                BigDecimal qkcAmount = new BigDecimal(binding.ethAmount.getText().toString().trim());
+                BigDecimal qkcAmount = new BigDecimal(binding.qkcAmount.getText().toString().trim());
                 String receiverAddress = binding.receiverAddress.getText().toString().trim();
 
 
@@ -65,21 +67,7 @@ public class SendQKCActivity extends AppCompatActivity {
                             Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
                         });
-/*
-                binanceManager.sendQCKToken(walletAddress, password, gasPrice, gasLimit, etherAmount, receiverAddress, this)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(tx -> {
 
-                            Toast.makeText(this, "TX : " + tx, Toast.LENGTH_SHORT).show();
-
-                        }, error -> {
-
-                            binding.result.setText(error.getMessage() + ". Please check balance of provided walletaddress!");
-
-                            error.printStackTrace();
-                            Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show();
-                        });*/
             }
 
         });
