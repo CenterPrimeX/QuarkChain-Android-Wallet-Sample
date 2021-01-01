@@ -1,4 +1,4 @@
-# QKC-Wallet-Android-Sample
+# QuarkChain Android Wallet Sample
 
 ## Overview 
 
