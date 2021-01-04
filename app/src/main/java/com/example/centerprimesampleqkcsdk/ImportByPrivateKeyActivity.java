@@ -22,30 +22,35 @@ public class ImportByPrivateKeyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_import_private_key);
 
-        /**
-         * Using this importFromPrivateKey function user can import his wallet from its private key.
-         *
-         * @params privateKey, Context
-                *
-         * @return walletAddress
-         */
-
         QKCManager qkcManager = QKCManager.getInstance();
+        /**
+         * @param infura - Initialize infura
+         */
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
         binding.checkBtn.setOnClickListener(v -> {
+            /**
+             * Using this importFromPrivateKey function user can import his wallet from its private key.
+             *
+             * @params privateKey, Context
+             *
+             * @return walletAddress
+             */
             String privateKey = binding.privateKey.getText().toString();
             qkcManager.importFromPrivateKey(privateKey, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(walletAddress -> {
-
+                        /**
+                         * if function successfully completes result can be caught in this block
+                         */
                         binding.address.setText("0x" + walletAddress);
                         binding.copyBtn.setVisibility(View.VISIBLE);
 
-                        //  Toast.makeText(this, "Wallet Address : " + walletAddress, Toast.LENGTH_SHORT).show();
-
                     }, error -> {
+                        /**
+                         * if function fails error can be caught in this block
+                         */
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         });

@@ -32,6 +32,9 @@ public class CreateWalletActivity extends AppCompatActivity {
          */
 
         QKCManager qkcManager = new QKCManager();
+        /**
+         * @param infura - Initialize infura
+         */
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
         binding.createWallet.setOnClickListener(v -> {
@@ -40,16 +43,26 @@ public class CreateWalletActivity extends AppCompatActivity {
                     && binding.password.getText().toString().trim().length() >= 6
                     && binding.confirmPassword.getText().toString().trim().length() >= 6) {
 
+                /**
+                 * Using this createWallet function user can create a wallet.
+                 *
+                 * @param password - must be provided password to wallet address
+                 * @param Context - activity context
+                 *
+                 * @return walletAddress
+                 */
+
                 qkcManager.createWallet(binding.password.getText().toString(), this)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(wallet -> {
-
+                            /**
+                             * if function successfully completes result can be caught in this block
+                             */
                             String walletAddress = wallet.getAddress();
                             String qckWalletAddress = qkcManager.
                                     getQCKAddress(walletAddress,this);
 
-                     //       binding.address.setText("0x" + wallet.getAddress());
                             binding.qckAddress.setText(qckWalletAddress);
                             binding.ethAddress.setText(walletAddress);
 
@@ -57,6 +70,9 @@ public class CreateWalletActivity extends AppCompatActivity {
                             binding.copyQCK.setVisibility(View.VISIBLE);
 
                         }, error -> {
+                            /**
+                             * if function fails error can be catched in this block
+                             */
                             System.out.println(error);
                         });
             } else {

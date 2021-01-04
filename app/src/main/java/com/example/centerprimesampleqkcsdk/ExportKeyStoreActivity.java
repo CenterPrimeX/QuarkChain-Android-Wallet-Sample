@@ -26,15 +26,10 @@ public class ExportKeyStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_export_keystore);
 
-        /**
-         * Using this getKeyStore function user can get keyStore of provided walletAddress.
-         *
-         * @params WalletAddress, Context
-         *
-         * @return keyStore
-         */
-
         QKCManager qkcManager = QKCManager.getInstance();
+        /**
+         * @param infura - Initialize infura
+         */
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
         binding.button.setOnClickListener(v -> {
@@ -45,17 +40,31 @@ public class ExportKeyStoreActivity extends AppCompatActivity {
                 Toast.makeText(this, "Enter wallet address", Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * Using this getKeyStore function user can get keyStore of provided walletAddress.
+             *
+             * @param WalletAddress - wallet address which user want to get key store
+             * @param Context - activity context
+             *
+             * @return if the function is completed successfully returns keyStore JSON file or error name
+             */
+
             qkcManager.getKeyStore(walletAddress, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(keystore -> {
-
+                        /**
+                         * if function successfully completes result can be caught in this block
+                         */
                         binding.keystoreT.setVisibility(View.VISIBLE);
                         binding.copy.setVisibility(View.VISIBLE);
                         binding.keystoreT.setText(keystore);
                         hideKeyboard(this);
 
                     }, error -> {
+                        /**
+                         * if function fails error can be catched in this block
+                         */
                         Toast.makeText(this, "Please insert valid wallet address", Toast.LENGTH_SHORT).show();
                     });
         });

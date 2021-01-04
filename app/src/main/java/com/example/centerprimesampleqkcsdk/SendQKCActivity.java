@@ -25,18 +25,12 @@ public class SendQKCActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_send_qkc);
-    /**
-     * Using this sendQCKToken function you can send QKC from walletAddress to another walletAddress.
-     *
-     * @params senderWalletAddress, password, gasPrice, gasLimit, qkcAmount, receiverWalletAddress, Context
-     *
-     * @return transactionHash
-     */
-
 
         QKCManager qkcManager = QKCManager.getInstance();
+        /**
+         * @param infura - Initialize infura
+         */
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
-
 
         binding.sendQKC.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(binding.qkcAddress.getText().toString().trim())
@@ -46,6 +40,19 @@ public class SendQKCActivity extends AppCompatActivity {
                     && !TextUtils.isEmpty(binding.receiverAddress.getText().toString().trim())
                     && !TextUtils.isEmpty(binding.password.getText().toString().trim())) {
 
+                /**
+                 * Using this sendQCKToken function you can send ethereum from walletAddress to another walletAddress.
+                 *
+                 * @param senderWalletAddress - must be provided sender's wallet address
+                 * @param password - User must enter password of wallet address
+                 * @param gasPrice - gas price: 30000000000
+                 * @param gasLimit - gas limit atleast 21000 or more
+                 * @param qkcAmount - amount of QKC which user want to send
+                 * @param receiverWalletAddress - wallet address which is user want to send QKC
+                 * @param Context - activity context
+                 *
+                 * @return if sending completes successfully the function returns transactionHash or returns error name
+                 */
                 String walletAddress = binding.qkcAddress.getText().toString();
                 String ethAddress = binding.ethAddress.getText().toString();
                 String password = binding.password.getText().toString();
@@ -60,10 +67,16 @@ public class SendQKCActivity extends AppCompatActivity {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(tx -> {
-
+                            /**
+                             * if function successfully completes result can be caught in this block
+                             */
                             Toast.makeText(this, "TX : " + tx, Toast.LENGTH_SHORT).show();
+                            binding.result.setText("TX: " + tx);
 
                         }, error -> {
+                            /**
+                             * if function fails error can be caught in this block
+                             */
                             Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
                         });

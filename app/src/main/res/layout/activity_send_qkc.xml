@@ -18,7 +18,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="20dp"
-            android:hint="Enter your QCK wallet address"
+            android:hint="Enter your QKC wallet address"
             android:textColor="@color/black" />
         <EditText
             android:id="@+id/ethAddress"
@@ -75,7 +75,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
-                android:hint="QCK amount"
+                android:hint="QKC amount"
                 android:inputType="numberDecimal"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
@@ -91,7 +91,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="Enter receiver QCK wallet address"
+            android:hint="Enter receiver QKC wallet address"
             android:textColor="@color/black" />
 
         <TextView
@@ -100,17 +100,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="#FF0000" />
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/sendQKC"
-            android:layout_width="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_width="match_parent"
             android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:background="@drawable/button_1_12"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="Send QCK" />
+            android:text="Send QKC" />
 
 
     </LinearLayout>

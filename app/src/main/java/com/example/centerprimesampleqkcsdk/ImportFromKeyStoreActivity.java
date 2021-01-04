@@ -23,30 +23,38 @@ public class ImportFromKeyStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_import_keystore);
 
-        /**
-         * Using this importFromKeystore function user can import his wallet from its keystore.
-         *
-         * @params keystore, password, Context
-         *
-         * @return walletAddress
-         */
-
         QKCManager qkcManager = QKCManager.getInstance();
+        /**
+         * @param infura - Initialize infura
+         */
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
 
         binding.importBtn.setOnClickListener(v -> {
+            /**
+             * Using this importFromKeyStore function user can import his wallet from keystore.
+             *
+             * @param keystore - keystore JSON file
+             * @param password - password of provided keystore
+             * @param Context - activity context
+             *
+             * @return walletAddress
+             */
             String password = binding.password.getText().toString();
             String keystore = binding.keystoreT.getText().toString();
             qkcManager.importFromKeystore(keystore, password, this)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(walletAddress -> {
-
+                        /**
+                         * if function successfully completes result can be caught in this block
+                         */
                         binding.walletAddress.setText("0x" + walletAddress);
                         binding.copy.setVisibility(View.VISIBLE);
-                        // Toast.makeText(this, "Wallet Address : " + walletAddress, Toast.LENGTH_SHORT).show();
 
                     }, error -> {
+                        /**
+                         * if function fails error can be caught in this block
+                         */
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         });

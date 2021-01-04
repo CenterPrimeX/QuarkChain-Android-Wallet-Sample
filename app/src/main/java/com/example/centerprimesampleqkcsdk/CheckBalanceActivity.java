@@ -27,8 +27,14 @@ import io.reactivex.schedulers.Schedulers;
 public class CheckBalanceActivity extends AppCompatActivity {
     ActivityCheckBalanceBinding binding;
 
+    /**
+     * @param chain - collection of chain numbers to choose
+     */
     String[] chain = {"0", "1", "2", "3", "4", "5", "6"};
 
+    /**
+     * @param chainID - Initialize chain ID. Default is 0
+     */
     int chainID = Integer.valueOf(chain[0]);
 
     @Override
@@ -38,38 +44,40 @@ public class CheckBalanceActivity extends AppCompatActivity {
 
         QKCManager qkcManager = QKCManager.getInstance();
         qkcManager.init("http://jrpc.mainnet.quarkchain.io:38391");
-        /**
-         * Using this getQCKBalance function you can check balance of provided walletAddress.
-         *
-         * @params walletAddress
-         *
-         * @return balance
-         */
-
 
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, chain);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spin.setAdapter(aa);
 
+        /**
+         * This spinner chooses chain of QKC wallet address
+         */
         binding.spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 chainID = Integer.valueOf(chain[position]);
                 System.out.println(chainID);
-                //TODO set text'
+
                 if (TextUtils.isEmpty(binding.address.getText())){
                     return;
                 }
+                /**
+                 * @param address - ethereum address
+                 */
                 String address = binding.address.getText().toString();
                 if (!address.startsWith("0x")) {
                     address = "0x" + address;
                 }
 
-                String qckWalletAddress = qkcManager.
-                        getQCKAddress(address,CheckBalanceActivity.this);
+                /**
+                 * @param qckWalletAddress - convert ethereum address to QKC wallet address
+                 */
+                String qckWalletAddress = qkcManager.getQCKAddress(address,CheckBalanceActivity.this);
 
+                /**
+                 * @param chainBasedAddress - convert qckWalletAddress to QKC chainBased address
+                 */
                 String chainBasedAddress =qkcManager.getQCKAddressByChainIdAndShardId(qckWalletAddress,chainID,0,CheckBalanceActivity.this);
-
                 binding.quarkAddress.setText(chainBasedAddress);
             }
 
@@ -85,6 +93,15 @@ public class CheckBalanceActivity extends AppCompatActivity {
                 address = "0x" + address;
             }
 
+            /**
+             * Using this balanceInEth function you can check balance of provided walletAddress.
+             *
+             * @param walletAddress - which user want to check it's balance
+             * @param context - activity context
+             *
+             * @return if the function completes successfully returns balance of provided wallet address or returns error name
+             */
+
             String qckWalletAddress = qkcManager.
                     getQCKAddress(address,this);
 
@@ -95,8 +112,9 @@ public class CheckBalanceActivity extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(accountData -> {
-
-
+                        /**
+                         * if function successfully completes result can be caught in this block
+                         */
                         BigInteger balance = BigInteger.ZERO;
                         if (!accountData.getPrimary().getBalances().isEmpty()) {
                             balance = Numeric.toBigInt(accountData.getPrimary().getBalances().get(0)
@@ -110,6 +128,9 @@ public class CheckBalanceActivity extends AppCompatActivity {
                         //   binding.balanceTxt.setText("QKC balance: " + accountData.getPrimary().getBalances().get(1));
 
                     }, error -> {
+                        /**
+                         * if function fails error can be caught in this block
+                         */
                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     });
