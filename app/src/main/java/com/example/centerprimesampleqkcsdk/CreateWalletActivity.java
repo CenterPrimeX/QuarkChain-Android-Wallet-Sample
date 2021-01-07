@@ -52,7 +52,7 @@ public class CreateWalletActivity extends AppCompatActivity {
                  * @return walletAddress
                  */
 
-                qkcManager.createWallet(binding.password.getText().toString(), this)
+                qkcManager.createWallet(binding.password.getText().toString().trim(), this)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(wallet -> {
@@ -64,7 +64,7 @@ public class CreateWalletActivity extends AppCompatActivity {
                                     getQCKAddress(walletAddress,this);
 
                             binding.qckAddress.setText(qckWalletAddress);
-                            binding.ethAddress.setText(walletAddress);
+                            binding.ethAddress.setText("0x" +walletAddress);
 
                             binding.copyEth.setVisibility(View.VISIBLE);
                             binding.copyQCK.setVisibility(View.VISIBLE);

@@ -40,14 +40,13 @@
                         android:textStyle="bold" />
 
 
-
                     <EditText
-                        android:layout_marginTop="20dp"
                         android:id="@+id/password"
-                        android:singleLine="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your password here (6 letters)" />
+                        android:layout_marginTop="20dp"
+                        android:hint="Enter your password here (6 letters)"
+                        android:singleLine="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,7 +64,6 @@
                             android:visibility="gone" />
 
                     </LinearLayout>
-
 
 
                     <FrameLayout
@@ -103,58 +101,57 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/ethAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
-                    android:textColor="@color/black"
-                    android:id="@+id/ethAddress"/>
+                    android:textColor="@color/black" />
+
                 <TextView
+                    android:id="@+id/qckAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
-                    android:textColor="@color/black"
-                    android:id="@+id/qckAddress"/>
+                    android:textColor="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_marginRight="44dp"
                     android:layout_marginLeft="44dp"
-                    android:gravity="center">
-                    <Button
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/copyEth"
-                        android:layout_weight="1"
-                        android:layout_marginRight="24dp"
-                        android:layout_gravity="center"
-                        android:text="copy eth"
-                        android:background="@drawable/button_1_12"
-                        android:textColor="@color/white"
-                        android:visibility="invisible"/>
+                    android:layout_marginRight="44dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <Button
+                        android:id="@+id/copyEth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_1_10"
+                        android:text="copy eth"
+                        android:textColor="@color/white"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:id="@+id/copyQCK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="24dp"
                         android:layout_weight="1"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button_1_12"
-                        android:id="@+id/copyQCK"
-                        android:layout_gravity="center"
-                        android:text="copy qck"
+                        android:background="@drawable/button_1_10"
+                        android:text="copy qkc"
                         android:textColor="@color/white"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible" />
 
                 </LinearLayout>
-
 
 
                 <View
@@ -171,7 +168,7 @@
                     android:layout_marginRight="24dp"
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/button_1_12"
-                    android:text="Create Eth Wallet Address"
+                    android:text="Create Wallet"
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     android:textStyle="bold" />
