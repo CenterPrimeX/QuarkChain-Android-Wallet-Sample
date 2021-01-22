@@ -43,4 +43,4 @@ This app demonstrates wallet features which contains examples of:
 <img src="https://centerprime.technology/images/github/quark chain/check_balance.png">  
 
 #### Send QKC
-<img src="https://centerprime.technology/images/github/quark chain/send_qkc.png">
+<img src="https://centerprime.technology/images/github/quark chain/send_qkc.png"> 
