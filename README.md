@@ -22,25 +22,25 @@ This app demonstrates wallet features which contains examples of:
 ### 2. Screenshots
 
 #### Main Screen
-<img src="https://centerprime.technology/images/github/quark chain/main_screen.png">
+<img src="https://centerprime.technology/images/github/quark chain android/main_screen.png">
 
 #### Create Wallet 
-<img src="https://centerprime.technology/images/github/quark chain/create_wallet.png">
+<img src="https://centerprime.technology/images/github/quark chain android/create_wallet.png">
 
 #### Export Keystore
-<img src="https://centerprime.technology/images/github/quark chain/export_keystore.png">
+<img src="https://centerprime.technology/images/github/quark chain android/export_keystore.png">
 
 #### Export Private Key
-<img src="https://centerprime.technology/images/github/quark chain/export_private_key.png">
+<img src="https://centerprime.technology/images/github/quark chain android/export_private_key.png">
 
 #### Import Wallet By Keystore
-<img src="https://centerprime.technology/images/github/quark chain/import_wallet_by_keystore.png">
+<img src="https://centerprime.technology/images/github/quark chain android/import_wallet_by_keystore.png">
 
 #### Import Wallet By Private Key
-<img src="https://centerprime.technology/images/github/quark chain/import_wallet_by_private_key.png"> 
+<img src="https://centerprime.technology/images/github/quark chain android/import_wallet_by_private_key.png"> 
 
 #### Check Balance
-<img src="https://centerprime.technology/images/github/quark chain/check_balance.png">  
+<img src="https://centerprime.technology/images/github/quark chain android/check_balance.png">  
 
 #### Send QKC
-<img src="https://centerprime.technology/images/github/quark chain/send_qkc.png"> 
+<img src="https://centerprime.technology/images/github/quark chain android/send_qkc.png"> 
